@@ -1,0 +1,21 @@
+{
+  "id": "0014b226-0918-49b3-ae0b-7434add98261",
+  "version": "2.0",
+  "name": "Projeto-LES",
+  "url": "",
+  "tests": [{
+    "id": "2e352aa6-7884-4cff-98f7-cbb2c3bb1d98",
+    "name": "CreateUserClient",
+    "commands": []
+  }],
+  "suites": [{
+    "id": "548e8b5d-f85a-4844-b545-c3f24a46aa29",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["2e352aa6-7884-4cff-98f7-cbb2c3bb1d98"]
+  }],
+  "urls": [],
+  "plugins": []
+}
