@@ -3,18 +3,19 @@
 
 //Credit Card's Company Class
     class CreditCardCompany extends DomainEntity {
-        #name;
+        #description;
 
         constructor(){
             super();
+            this.#description = null;
         };
         
-        setName(name){
-            this.#name = name;
+        setDescription(description){
+            this.#description = description;
         };
 
-        getName(){
-            return this.#name;
+        getDescription(){
+            return this.#description;
         };
     };
 

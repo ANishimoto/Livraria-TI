@@ -6,7 +6,6 @@
         #isActive;
 
         constructor(){
-            super();
             this.#CreateDate = null;
             this.#UpdateDate = null;
             this.#id = null;

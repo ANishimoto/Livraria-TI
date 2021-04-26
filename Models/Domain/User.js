@@ -12,7 +12,7 @@
             super();
             this.#email = null;
             this.#password = null;
-            this.userType = new UserType();
+            this.#userType = new UserType();
         };
 
         setUserType(userType){

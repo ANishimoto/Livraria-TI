@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Livraria TI | O maior acervo de livros de TI</title>
+        <link rel="stylesheet" href="./CSS/tailwind.css">
+        <link rel="stylesheet" href="./CSS/main.css">
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="/images/Logo.png" type="image/png">
+    </head>
+    <body>
+        <header class="bg-gray-400 pb-4">
+            <div class="flex justify-center">
+                <div class="h-20 pb-2 md:pb-1 flex items-end md:mb-2 w-11/12">
+                    <div class="flex items-center w-24">
+                        <div class="float-left pl-3 md:pl-0">
+                            <a href="/">
+                                <img class="ml-2 h-14 md:h-26" src="/images/Logo1.5.png" alt="Logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex items-center w-full pb-1 pr-3 md:pr-0">
+                        <ul class="items-center">
+                            <li class="inline-block ml-4 pr-4">
+                                <div class="ml-4">
+                                    <form action="/search" method="POST" class=" flex items-center">
+                                        <input type="text" name="search_bar" id="search_bar" class="rounded-l-lg h-8 w-96">
+                                        <button type="submit"><img src="/images/search_icon.png" alt="buscar" class="h-8 w-8 rounded-r-lg"></button>
+                                    </form>
+                                </div>
+                            </li>
+                            <li class="inline-block ml-4 pr-4">
+                                <a href="/signin"><img src="/images/avatar.png" alt="" class="h-12"></a>
+                            </li>
+                            <li class="inline-block ml-4 pr-4">
+                                <a href="/carrinho"><img src="/images/carrinho.png" alt="carrinho" class="h-12"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="container mt-8">
+                <div class="inline-block ml-4">
+                    <form action="">
+                        <a href=""> <img src="/images/node-js-design-patterns.jpg" alt="" class="h-64"></a>
+                        <button type="submit" class="mt-2 w-full bg-brown-100 rounded-lg p-2 font-medium text-gray-200 text-lg">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+                <div class="inline-block ml-4">
+                    <form action="">
+                        <a href=""> <img src="/images/estrutura-de-dados-e-algoritmos-com-javascript.jpg" alt="" class="h-64"></a>
+                        <button type="submit" class="mt-2 w-full bg-brown-100 rounded-lg p-2 font-medium text-gray-200 text-lg">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+                <div class="inline-block ml-4">
+                    <form action="">
+                        <a href=""> <img src="/images/pro-node-js-for-developers.jpg" alt="" class="h-64"></a>
+                        <button type="submit" class="mt-2 w-full bg-brown-100 rounded-lg p-2 font-medium text-gray-200 text-lg">
+                            Adicionar ao carrinho
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <footer>
+
+        </footer>
+    </body>
+</html>

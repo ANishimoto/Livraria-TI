@@ -1,0 +1,1 @@
+INSERT INTO ClientTypes (CTP_STR_Description) VALUES ("Consumidor");

@@ -3,29 +3,28 @@
     const Address = require("./Address");
     const Phone = require("./Phone");
     const CreditCard = require("./CreditCard");
+    const ClientType = require("./ClientType");
     const User = require("./User");
 
 //Client Class
     class Client extends Person {
-        #name;
         #ClientType;
         #addresses;
         #phones;
         #creditCards;
         #user;
+        #ranking;
+        #tickets
 
         constructor(){
             super();
-            this.#name = null;
-            this.#ClientType = null;
+            this.#ClientType = new ClientType();
             this.#addresses = [];
             this.#phones = [];
             this.#creditCards = [];
             this.#user = new User();
-        };
-
-        getName(){
-            return this.#name;
+            this.#ranking = null;
+            this.#tickets = [];
         };
 
         getClientType(){
@@ -48,8 +47,12 @@
             return this.#user;
         };
 
-        setName(name){
-            this.#name = name;
+        getRanking(){
+            return this.#ranking;
+        };
+
+        getTickets(){
+            return this.#tickets;
         };
 
         setClientType(ClientType){
@@ -57,19 +60,27 @@
         };
 
         addAddress(address){
-            return this.#addresses.push(address);
+            this.#addresses.push(address);
         };
 
         addPhone(phone){
-            return this.#phones.push(phone);
+            this.#phones.push(phone);
         };
 
         addCreditCard(creditCard){
-            return this.#creditCards.push(creditCard);
+            this.#creditCards.push(creditCard);
         };
 
         setUser(user){
             this.#user = user;
+        };
+
+        setRanking(ranking){
+            this.#ranking = ranking;
+        };
+
+        addTicket(ticket){
+            this.#tickets.push(ticket);
         };
 
     };

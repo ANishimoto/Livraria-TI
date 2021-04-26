@@ -1,4 +1,4 @@
-async function submitForm() {
+function submitForm() {
     let message = "";
 
     let flgPassword = false;
@@ -38,3 +38,36 @@ async function submitForm() {
         preventDefault();
     };
 };
+
+function submitAddressForm() {
+    let message = "";
+
+    let flgBill = false;
+    let address = document.getElementsByName("default_bill");
+    address.forEach(element => {
+        if (element.checked == true) {
+            flgBill = true;
+        };
+    });
+
+    if (!flgBill){
+        message += "É obrigatório selecionar um endereço como endereço padrão de cobrança.\n";
+    };
+
+    let flgDelivery = false;
+    address = document.getElementsByName("default_delivery");
+    address.forEach(element => {
+        if (element.checked == true) {
+            flgDelivery = true;
+        };
+    });
+
+    if (!flgDelivery){
+        message += "É obrigatório selecionar um endereço como endereço padrão de entrega.\n";
+    };
+
+    if (!flgBill || !flgDelivery){
+        alert(message);
+        preventDefault();
+    };    
+}

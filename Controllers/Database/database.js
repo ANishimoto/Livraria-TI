@@ -8,7 +8,7 @@
             host : "localhost",
             user : "teste",
             password : "12345",
-            database : "projeto-les"
+            database : "livrariati"
         }
     });
     

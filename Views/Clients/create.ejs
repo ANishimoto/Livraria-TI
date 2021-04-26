@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Livraria TI | O maior acervo de livros de TI</title>
+        <link rel="stylesheet" href="./CSS/tailwind.css">
+        <link rel="stylesheet" href="./CSS/main.css">
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="/images/Logo.png" type="image/png">
+    </head>
+    <body class="bg-gray-100">
+        <header class="bg-gray-400">
+            <div class="flex justify-center">
+                <div class="h-20 pb-2 md:pb-1 flex items-end md:mb-2 md:w-7/12 w-full">
+                    <div class="float-left pl-3 md:pl-0">
+                        <a href="/">
+                            <img class="ml-2 h-14 md:h-26" src="/images/Logo1.5.png" alt="Logo">
+                        </a>
+                    </div>
+                    <div class="items-end w-full pb-1 pr-3 md:pr-0">
+                        <ul class="text-base float-right">
+                            <li class="inline-block ml-4 pr-4">
+                                <a href="/signin">Entrar</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="h-6 flex justify-center">
+                <div class="h-6 w-11/12 md:w-7/12 bg-gray-50 rounded-t-lg"></div>
+            </div>
+        </header>
+
+        <main class="bg-gray-300 w-full flex justify-center">
+            <form action="/client" id="create_client" onsubmit="submitForm()" method="POST" class="bg-gray-50 w-11/12 md:w-7/12 rounded-b-lg mb-12">
+                <fieldset class="mt-4 px-4">
+                    <div class="w-full pb-2 border-b-2">
+                        <h2 class="font-bold text-gray-500">Seus Dados</h2>
+                    </div>
+                    <div class="w-full mt-4">
+                        <legend>Nome Completo</legend>
+                        <input type="text" name="client_name" id="client_name" class="w-full rounded-lg pl-2 h-8 border-2" required>
+                    </div>
+                    <div class="w-full mt-4 lg:inline-grid lg:grid-cols-3-7">
+                        <div class="lg:inline-block lg:pr-1">
+                            <legend>Data de Nascimento</legend>
+                            <input type="date" name="birth" id="birth" class="w-full rounded-lg pl-1 h-8 border-2" required>
+                        </div>
+                        <div class="w-full lg:inline-grid lg:grid-cols-5-5">
+                            <div class="lg:inline-block mt-4 lg:mt-0">
+                                <legend>Gênero</legend>
+                                <select name="gender" id="gender" class="w-full rounded-lg pl-1 h-8 border-2" required>
+                                        <option value="">---Selecione uma opção---</option>
+                                    <% genders.forEach(gender => { %>
+                                        <option value="<%= gender.id%>">
+                                            <%= gender.option%>
+                                        </option>
+                                    <% }); %>
+                                </select>
+                            </div>
+                            <div class="lg:inline-block mt-4 lg:mt-0 lg:pl-1">
+                                <legend>CPF</legend>
+                                <input type="tel" name="CPF" class="w-full rounded-lg pl-2 h-8 border-2" minlength="11" maxlength="11" oninput="onlyNumbers(this)" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full mt-4">
+                        <legend>Endereço de E-mail</legend>
+                        <input type="text" name="email" id="email" class="w-full rounded-lg pl-2 h-8 border-2" required>
+                    </div>
+                    <div class="w-full mt-4 lg:inline-grid lg:grid-cols-2">
+                        <div class="w-full mt-4 lg:mt-0 lg:pr-0.5">
+                            <legend>Senha</legend>
+                            <input type="password" name="password" id="password" class="w-full rounded-lg pl-2 h-8 border-2" required>
+                        </div>
+                        <div class="w-full mt-4 lg:mt-0 lg:pl-0.5">
+                            <legend>Confirmar Senha</legend>
+                            <input type="password" name="conf_password" id="conf_password" class="w-full rounded-lg pl-2 h-8 border-2" required>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="mt-4 px-4" id="Phones">
+                    <div class="w-full mt-4 pb-2 border-b-2">
+                        <h2 class="font-bold text-gray-500 inline-block">Telefones</h2>
+                        <button type="button" name="Phones" class="inline-block float-right" onclick="AddFieldSet(name)">+ Novo Telefone</button>
+                    </div>
+                    <div name="Phone">
+                        <div class="w-full lg:inline-grid lg:grid-cols-4-6">
+                            <div class="w-full mt-4">
+                                <legend>Tipo</legend>
+                                <select name="tpPhone" class="w-full rounded-lg pl-1 h-8 border-2" required>
+                                        <option value="">---Selecione uma opção---</option>
+                                    <% phone_types.forEach(type => { %>
+                                        <option value="<%= type.id %>">
+                                            <%= type.option %>
+                                        </option>
+                                    <% }); %>
+                                </select>
+                            </div>
+                            <div class="w-full lg:inline-grid lg:grid-cols-4-6">
+                                <div class="w-full mt-4 lg:px-1">
+                                    <legend>DDD</legend>
+                                    <input type="tel" name="DDD" class="w-full rounded-lg pl-1 h-8 border-2" minlength="2" maxlength="2" oninput="onlyNumbers(this)" required>
+                                </div>
+                                <div class="w-full mt-4">
+                                    <legend>Número</legend>
+                                    <input type="tel" name="phone_number" class="w-full rounded-lg pl-1 h-8 border-2" minlength="8" maxlength="9" oninput="onlyNumbers(this)" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset id="Addresses" class="mt-4 px-4">
+                    <div class="w-full mt-4 pb-2 border-b-2">
+                        <h2 class="font-bold text-gray-500 inline-block">Endereços</h2>
+                        <button type="button" name="Addresses" class="float-right inline-block" onclick="AddFieldSet(name)">+ Novo Endereço</button>
+                    </div>
+                    <div name="Address">
+                        <div class="mt-2 inline-block w-full lg:inline-grid lg:grid-cols-2">
+                            <div class="mt-2 md:inline-block flex items-center">
+                                <input type="radio" name="default_bill" class="inline-block" checked>
+                                <label class="inline-block ml-2">Endereço padrão de cobrança?</label>
+                            </div>
+                            <div class="mt-2 md:inline-block flex items-center">
+                                <input type="radio" name="default_delivery" class="inline-block" checked>
+                                <label class="inline-block ml-2">Endereço padrão de entrega?</label>
+                            </div>
+                        </div>
+                        <div class="lg:inline-grid lg:grid-cols-5-5 w-full">
+                            <div  class="lg:pr-1">
+                                <legend class="mt-4">Tipo da Residência</legend>
+                                <select name="residence_types" class="w-full rounded-lg pl-1 h-8 border-2" required>
+                                        <option value="">---Selecione uma opção---</option>
+                                    <% residence_types.forEach(type => { %>
+                                        <option value="<%= type.id %>">
+                                            <%= type.option %>
+                                        </option>
+                                    <% }); %>
+                                </select>
+                            </div>
+                            <div>
+                                <legend class="mt-4">CEP</legend>
+                                <input type="tel" name="CEP" data-index="0" class="w-full rounded-lg pl-1 h-8 border-2" minlength="8" maxlength="8" oninput="onlyNumbers(this)" required>
+                            </div>
+                        </div>
+                        <div class="w-full lg:inline-grid lg:grid-cols-3">
+                            <div class="lg:pr-1">
+                                <legend class="mt-4">País</legend>
+                                <input type="text" name="country" class="w-full rounded-lg pl-1 h-8 border-2" required>
+                            </div>
+                            <div class="lg:pr-1">
+                                <legend class="mt-4">Estado</legend>
+                                <input type="text" name="state" class="w-full rounded-lg pl-1 h-8 border-2" required>
+                            </div>
+                            <div>
+                                <legend class="mt-4">Cidade</legend>
+                                <input type="text" name="city" class="w-full rounded-lg pl-1 h-8 border-2" required>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="lg:inline-grid lg:grid-cols-4-6 w-full">
+                                <div class="lg:pr-1">
+                                    <legend class="mt-4">Tipo do Logradouro</legend>
+                                    <select name="public_places_types" class="w-full rounded-lg pl-1 h-8 border-2" required>
+                                            <option value="">---Selecione uma opção---</option>
+                                        <% public_places_types.forEach(type => { %>
+                                            <option value="<%= type.id %>">
+                                                <%= type.option %>
+                                            </option>
+                                        <% }); %>
+                                    </select>
+                                </div>
+                                <div>
+                                    <legend class="mt-4">Logradouro</legend>
+                                    <input type="text" name="public_place" class="w-full rounded-lg pl-1 h-8 border-2" required>
+                                </div>
+                            </div>
+                            <div class="w-full lg:inline-grid lg:grid-cols-7-3">
+                                <div>
+                                    <legend class="mt-4">Bairro</legend>
+                                    <input type="text" name="neighborhood" class="w-full rounded-lg pl-1 h-8 border-2" required>
+                                </div>
+                                <div class="lg:pl-1">
+                                    <legend class="mt-4">Número</legend>
+                                    <input type="tel" name="address_number" class="w-full rounded-lg pl-1 h-8 border-2" maxlength="5" oninput="onlyNumbers(this)" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <legend>Observação <small class="ml-2">(Opcional)</small></legend>
+                            <textarea name="notes" class="w-full h-28 rounded-lg pl-1 border-2"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset id="CreditCards" class="mt-4 px-4">
+                    <div class="w-full pb-2 border-b-2 flex items-center">
+                        <div class="w-1/2">
+                            <h2 class="font-bold text-gray-500">Cartões de Crédito</h2>
+                        </div>
+                        <div class="relative w-1/2">
+                            <button type="button" name="CreditCards"class="float-right text-right" onclick="AddFieldSet(name)">+ Novo Cartão de Crédito</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="w-full lg:inline-grid lg:grid-cols-4-6">
+                            <div class="lg:pr-1">
+                                <legend class="mt-4">Bandeira</legend>
+                                <select name="card_company" class="w-full rounded-lg pl-1 h-8 border-2" required>
+                                        <option value="">---Selecione uma opção---</option>
+                                    <% companies.forEach(company => { %>
+                                        <option value="<%= company.id %>">
+                                            <%= company.option %>
+                                        </option>
+                                    <% }); %>
+                                </select>
+                            </div>
+                            <div>
+                                <legend class="mt-4">Número do cartão</legend>
+                                <input type="password" name="card_number" minlength="13" maxlength="16" class="w-full rounded-lg pl-1 h-8 border-2" oninput="onlyNumbers(this)" required>
+                            </div>
+                        </div>
+                        <div class="w-full lg:inline-grid lg:grid-cols-6-4">
+                            <div>
+                                <legend class="mt-4">Nome impresso no cartão</legend>
+                                <input type="text" name="printed_name" maxlength="45" class="w-full rounded-lg pl-1 h-8 border-2" required>
+                            </div>
+                            <div class="lg:pl-1">
+                                <legend class="mt-4">Código de segurança</legend>
+                                <input type="password" name="secure_code" minlength="3" maxlength="4" class="w-full rounded-lg pl-1 h-8 border-2" oninput="onlyNumbers(this)" required>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="bg-gray-50 w-full mt-8 mb-4 border-t-2 md:inline-grid md:grid-cols-2">
+                    <div class="px-4 mt-4 flex w-full items-center justify-center">
+                        <div class="inline-block mr-2">
+                            <img src="/Images/warning.svg" alt="Warning_Logo">
+                        </div>
+                        <div class="inline-block ml-2">
+                            <legend>Importante</legend>
+                            <small>Preencha todos os dados</small>
+                        </div>
+                    </div>
+                    <div class="block w-full px-4">
+                        <button type="submit" form="create_client" value="Submit" class="mt-4 w-full lg:w-1/2 lg:mr-4 md:float-right bg-brown-100 rounded-lg p-2 font-medium text-gray-200 text-lg">
+                            Salvar cadastro
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </main>
+        <footer>
+        </footer>        
+    </body>
+    <script src="/JS/axios.min.js"></script>
+    <script src="/JS/SearchCEP.js"></script>
+    <script src="/JS/CloneFieldset.js"></script>
+    <script src="/JS/SubmitForm.js"></script>
+</html>

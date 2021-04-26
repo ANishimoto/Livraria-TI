@@ -7,5 +7,5 @@ Create Table If Not Exists creditcards(
     CRE_BOL_Active TinyInt Not Null Default 1,
     CRE_DTT_InsertedDateTime DateTime not Null Default now(),
     CRE_DTT_UpdatedDateTime DateTime not Null Default now(),
-    FOREIGN KEY (CRE_FK_Company) REFERENCES creditcardcompanies(CCF_PK_CompanyId)
+    FOREIGN KEY (CRE_FK_Company) REFERENCES creditcardcompanies(CCC_PK_CompanyId)
 );

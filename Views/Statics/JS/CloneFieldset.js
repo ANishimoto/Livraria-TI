@@ -35,6 +35,11 @@ function AddFieldSet(name){
     fields.forEach(element => {
         element.value = "";
     }); 
+    
+    fields = child.querySelectorAll('select');
+    fields.forEach(element => {
+        element.value = "";
+    }); 
 
     Fieldset.appendChild(child);
 };

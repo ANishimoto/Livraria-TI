@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt_br" class="h-screen">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Livraria TI | O maior acervo de livros de TI</title>
+        <link rel="stylesheet" href="./CSS/tailwind.css">
+        <link rel="stylesheet" href="./CSS/main.css">
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="/images/Logo.png" type="image/png">
+    </head>
+    <body class="bg-gray-400 h-full">
+        <main class="h-full">
+            <div class="w-full h-full inline-grid grid-cols-3-7 lg:grid-cols-2-8">
+                <div class="w-full h-full">
+                    <div class="w-full h-20 bg-gray-400 flex items-center justify-center">
+                        <a href="/"><img class="h-14 md:h-26" src="/images/Logo1.5.png" alt="Logo"></a>
+                    </div>
+                    <div class="block">
+                        <div class="w-full flex items-center justify-center">
+                            <ul class="w-10/12">
+                                <li class="block"><button class="text-gray-700 font-bold w-full px-2 py-4 text-left underline" onclick="changeView('Employees')">Funcionários</button></li>
+                                <li class="block"><button class="text-gray-700 font-bold w-full px-2 py-4 text-left underline" onclick="changeView('Products')">Produtos</button></li>
+                                <li class="block"><button class="text-gray-700 font-bold w-full px-2 py-4 text-left underline" onclick="changeView('Clients')">Clientes</button></li>
+                                <li class="block"><button class="text-gray-700 font-bold w-full px-2 py-4 text-left underline" onclick="changeView('Returns')">Solicitações de Trocas</button></li>
+                                <li class="block"><button class="text-gray-700 font-bold w-full px-2 py-4 text-left underline" onclick="changeView('Dashboard')">Dashboard</button></li>
+                            </ul>
+                        </div>
+                        <div class="w-full flex items-center justify-center mt-16">
+                            <ul class="w-10/12">
+                                <li class="block"><a href="/signout" class="text-red-700 font-bold w-full px-2 py-4 text-left underline">Sair</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full h-full bg-gray-50 md:bg-gray-300" id="view">
+                    <div class="flex justify-center lg:mt-12 mb-20">
+
+                        <div hidden id="Products" class="pt-4 pb-8 w-full lg:w-9/12 bg-gray-50 lg:mt-4 lg:rounded-lg">
+                            <div class="w-full mt-6 pb-2 border-b-2 px-4">
+                                <h2 class="font-bold text-gray-500 inline-block">Gerenciamento de Produtos</h2>
+                            </div>
+                            <div class="inline-grid grid-cols-7-3 items-end">
+                                <div class="mt-4 px-4 inline-grid grid-cols-1-9 items-center">
+                                    <label for="">Pesquisar:</label>
+                                    <div class="ml-4 rounded-lg border border-black flex items-center">
+                                        <input type="text" name="search_products" id="search_products" class="h-8 w-11/12 rounded-lg">
+                                        <button type="button"><img src="/images/search_icon.png" alt="buscar" class="h-8 w-8 rounded-lg"></button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="button" class="bg-brown-100 rounded-lg mr-4 py-1 px-2 font-medium text-gray-200 text-lg" onclick="EnableViewForm(this)">Cadastrar novo</button>    
+                                </div>
+                            </div>
+                            <div class="w-full" hidden>
+                                <fieldset class="mt-4 px-4">
+                                    <div class="w-full pb-2 border-b-2">
+                                        <h2 class="font-bold text-gray-500">Dados do Livro</h2>
+                                    </div>
+                                    <div class="w-full mt-4">
+                                        <legend>Título</legend>
+                                        <input type="text" name="product_title" id="product_title" class="w-full rounded-lg pl-2 h-8 border-2" required>
+                                    </div>
+                                    <div class="w-full mt-4 lg:inline-grid lg:grid-cols-1-1-1">
+                                        <div class="mr-1">
+                                            <label>Edição</label>
+                                            <input type="text" name="product_edition" id="product_edition" class="w-full rounded-lg pl-2 h-8 border-2" required>
+                                        </div>
+                                        <div class="mr-1">
+                                            <label>Ano de Publicação</label>
+                                            <input type="text" name="product_publishYear" id="product_publishYear" class="w-full rounded-lg pl-2 h-8 border-2" required>
+                                        </div>
+                                        <div>
+                                            <label>ISBN</label>
+                                            <input type="text" name="product_ISBN" id="product_ISBN" class="w-full rounded-lg pl-2 h-8 border-2" required>
+                                        </div>
+                                    </div>
+                                    <div class="w-full mt-4 rounded-lg">
+                                        <legend></legend>
+                                    </div>
+                                    <div class="w-full mt-4 h-40 border-2 rounded-lg">
+                                        <div class="border-b-2">
+                                            <div>
+                                                <label class="ml-1" onkeyup="searchAuthor(this)">Buscar: </label>
+                                                <input type="text" class="w-1/2 m-1 border-2 rounded-lg inline-block" placeholder="Digite o nome do autor">
+                                            </div>
+                                            <div class="border-t-2 bg-gray-200 rounded-t-lg">
+                                                <label class="ml-6">Autor</label>
+                                            </div>
+                                        </div>
+                                        <div class="mx-1 overflow-y-auto" id="chkListAuthors"> 
+                                            <ul>
+                                                <li>
+                                                    <input type="checkbox" value="">
+                                                    <label class="inline-block">Teste</label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="w-full mt-4 h-40 border-2 rounded-lg">
+                                        <div class="border-b-2">
+                                            <div>
+                                                <label class="ml-1" onkeyup="searchCategory(this)">Buscar: </label>
+                                                <input type="text" class="w-1/2 m-1 border-2 rounded-lg inline-block" placeholder="Digite a categoria">
+                                            </div>
+                                            <div class="border-t-2 bg-gray-200 rounded-t-lg">
+                                                <label class="ml-6">Categoria</label>
+                                            </div>
+                                        </div>
+                                        <div class="mx-1 overflow-y-auto" id="chkListCategories"> 
+                                            <ul>
+                                                <li>
+                                                    <input type="checkbox" value="">
+                                                    <label class="inline-block">Teste</label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="w-full mt-4 h-40 border-2 rounded-lg">
+                                        <div class="border-b-2">
+                                            <div>
+                                                <label class="ml-1" onkeyup="searchPublisher(this)">Buscar: </label>
+                                                <input type="text" class="w-1/2 m-1 border-2 rounded-lg inline-block" placeholder="Digite o nome da editora">
+                                            </div>
+                                            <div class="border-t-2 bg-gray-200 rounded-t-lg">
+                                                <label class="ml-6">Editora</label>
+                                            </div>
+                                        </div>
+                                        <div class="mx-1 overflow-y-auto" id="chkListPublishers"> 
+                                            <ul>
+                                                <li>
+                                                    <input type="radio" value="">
+                                                    <label class="inline-block">Teste</label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="w-full mt-4 h-40 border-2 rounded-lg">
+                                        <div class="border-b-2">
+                                            <div>
+                                                <label class="ml-1" onkeyup="searchPriceGroup(this)">Buscar: </label>
+                                                <input type="text" class="w-1/2 m-1 border-2 rounded-lg inline-block" placeholder="Digite o grupo de precificação">
+                                            </div>
+                                            <div class="border-t-2 bg-gray-200 rounded-t-lg">
+                                                <label class="ml-6">Grupo de Precificação</label>
+                                            </div>
+                                        </div>
+                                        <div class="mx-1 overflow-y-auto" id="chkListPriceGroups"> 
+                                            <ul>
+                                                <li>
+                                                    <input type="radio" value="">
+                                                    <label class="inline-block">Teste</label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="block w-full px-4 mt-4">
+                                    <button type="button" id="DatasSubmit" class="mt-4 w-32 lg:mr-4 md:float-right bg-brown-100 rounded-lg p-2 font-medium text-gray-200 text-lg" onclick="SaveEmployee()">Enviar</button>
+                                    <button type="button" id="DatasCancel" onclick="disableEdition(this)" class="mt-4 w-32 lg:mr-4 md:float-right bg-brown-100 rounded-lg p-2 font-medium text-gray-200 text-lg">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div hidden id="Clients" class="pt-4 pb-8 w-full lg:w-9/12 bg-gray-50 lg:mt-4 lg:rounded-lg">
+                            <div class="w-full mt-6 pb-2 border-b-2 px-4">
+                                <h2 class="font-bold text-gray-500 inline-block">Gerenciamento de Clientes</h2>
+                            </div>
+                            <div class="mt-2 px-4">
+                                <form action="/adm/search_clientt" method="POST" class=" flex items-center">
+                                    <label for="">Pesquisar:</label>
+                                    <div class="ml-4 rounded-lg border border-black flex items-center">
+                                        <input type="text" name="search_clients" id="search_clients" class="h-8 w-96 rounded-lg">
+                                        <button type="submit"><img src="/images/search_icon.png" alt="buscar" class="h-8 w-8 rounded-lg"></button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="w-full px-4 mt-8">
+                                <label for=""><strong>Usuário:</strong> 100</label>
+                                <label for="" class="ml-8"><strong>Situação:</strong> Ativo</label>
+                                <button type="button" class="ml-8 bg-brown-100 rounded-lg px-2 font-medium text-gray-200 text-lg">Inativar</button>
+                            </div>
+                            
+                            <div class="w-full px-4 mt-8">
+                                <label for=""><strong>Usuário:</strong> 101</label>
+                                <label for="" class="ml-8"><strong>Situação:</strong> Inativo</label>
+                                <button type="button" class="ml-8 bg-brown-100 rounded-lg px-2 font-medium text-gray-200 text-lg">Ativar</button>
+                            </div>
+                        </div>
+
+                        <div hidden id="Returns" class="pt-4 pb-8 w-full lg:w-9/12 bg-gray-50 lg:mt-4 lg:rounded-lg">
+                            <div class="w-full mt-6 pb-2 border-b-2 px-4">
+                                <h2 class="font-bold text-gray-500 inline-block">Gerenciamento de Solicitações de Trocas</h2>
+                            </div>
+                            <div class="mt-2 px-4">
+                                <form action="/adm/search_return" method="POST" class=" flex items-center">
+                                    <label for="">Pesquisar:</label>
+                                    <div class="ml-4 rounded-lg border border-black flex items-center">
+                                        <input type="text" name="search_return" id="search_return" class="h-8 w-96 rounded-lg">
+                                        <button type="submit"><img src="/images/search_icon.png" alt="buscar" class="h-8 w-8 rounded-lg"></button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="w-full px-4 mt-8">
+                                <label for=""><strong>Pedido:</strong> 475</label>
+                                <label for="" class="ml-8"><strong>Status:</strong> Aguardando Aprovação</label>
+                                <button type="button" class="ml-8 bg-brown-100 rounded-lg px-2 font-medium text-gray-200 text-lg">Aprovar</button>
+                                <button type="button" class="ml-8 bg-brown-100 rounded-lg px-2 font-medium text-gray-200 text-lg">Recusar</button>
+                            </div>
+                            
+                            <div class="w-full px-4 mt-8">
+                                <label for=""><strong>Pedido:</strong> 480</label>
+                                <label for="" class="ml-8"><strong>Status:</strong> Em Troca</label>
+                            </div>
+                        </div>
+
+                        <div hidden id="Dashboard" class="pt-4 pb-8 w-full lg:w-9/12 bg-gray-50 lg:mt-4 lg:rounded-lg">
+                            <div class="w-full mt-6 pb-2 border-b-2 px-4">
+                                <h2 class="font-bold text-gray-500 inline-block">Dashboard</h2>
+                            </div>
+                            <div class="mt-2 px-4">
+                                <form action="/adm/search_return" method="POST" class=" flex items-center">
+                                    <label for="">Pesquisar:</label>
+                                    <div class="ml-4 rounded-lg border border-black flex items-center">
+                                        <input type="text" name="search_dashboard" id="search_dashboard" class="h-8 w-96 rounded-lg">
+                                        <button type="submit"><img src="/images/search_icon.png" alt="buscar" class="h-8 w-8 rounded-lg"></button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div>
+                                <img src="/images/Grafico.png" alt="">
+                            </div>
+                        </div>
+
+                        <div hidden id="Employees" class="pt-4 pb-8 w-full lg:w-9/12 bg-gray-50 lg:mt-4 lg:rounded-lg">
+                            <div class="w-full mt-6 pb-2 border-b-2 px-4">
+                                <h2 class="font-bold text-gray-500 inline-block">Funcionários</h2>
+                            </div>
+                            <div class="inline-grid grid-cols-7-3 items-end">
+                                <div class="mt-4 px-4 inline-grid grid-cols-1-9 items-center">
+                                    <label for="">Pesquisar:</label>
+                                    <div class="ml-4 rounded-lg border border-black flex items-center">
+                                        <input type="text" name="search_employees" id="search_employees" class="h-8 w-11/12 rounded-lg">
+                                        <button type="button"><img src="/images/search_icon.png" alt="buscar" class="h-8 w-8 rounded-lg"></button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="button" class="bg-brown-100 rounded-lg mr-4 py-1 px-2 font-medium text-gray-200 text-lg" onclick="EnableViewForm(this)">Cadastrar novo</button>    
+                                </div>
+                            </div>
+                            <div class="w-full" hidden>
+                                <fieldset class="mt-4 px-4">
+                                    <div class="w-full pb-2 border-b-2">
+                                        <h2 class="font-bold text-gray-500">Dados do Funcionário</h2>
+                                    </div>
+                                    <div class="w-full mt-4">
+                                        <legend>Nome Completo</legend>
+                                        <input type="text" name="employee_name" id="employee_name" class="w-full rounded-lg pl-2 h-8 border-2" required>
+                                    </div>
+                                    <div class="w-full mt-4 lg:inline-grid lg:grid-cols-3-7">
+                                        <div class="lg:inline-block lg:pr-1">
+                                            <legend>Data de Nascimento</legend>
+                                            <input type="date" name="birth" id="employee_birth" class="w-full rounded-lg pl-1 h-8 border-2" required>
+                                        </div>
+                                        <div class="w-full lg:inline-grid lg:grid-cols-5-5">
+                                            <div class="lg:inline-block mt-4 lg:mt-0">
+                                                <legend>Gênero</legend>
+                                                <select name="gender" id="employee_gender" class="w-full rounded-lg pl-1 h-8 border-2" required>
+                                                    <option value="">---Selecione uma opção---</option>
+                                                <% genders.forEach(gender => { %>
+                                                    <option value="<%= gender.id%>">
+                                                        <%= gender.option%>
+                                                    </option>
+                                                <% }); %>
+                                                </select>
+                                            </div>
+                                            <div class="lg:inline-block mt-4 lg:mt-0 lg:pl-1">
+                                                <legend>CPF</legend>
+                                                <input type="tel" name="CPF" id="employee_CPF" class="w-full rounded-lg pl-2 h-8 border-2" minlength="11" maxlength="11" oninput="onlyNumbers(this)" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-full mt-4">
+                                        <legend>Endereço de E-mail</legend>
+                                        <input type="text" name="email" id="employee_email" class="w-full rounded-lg pl-2 h-8 border-2" required>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="mt-4 px-4" id="Phone">
+                                    <div class="w-full mt-4 pb-2 border-b-2">
+                                        <h2 class="font-bold text-gray-500 inline-block">Telefone</h2>
+                                    </div>
+                                    <div name="Phone">
+                                        <div class="w-full lg:inline-grid lg:grid-cols-4-6">
+                                            <div class="w-full mt-4">
+                                                <legend>Tipo</legend>
+                                                <select name="employee_tpPhone" id="employee_tpPhone" class="w-full rounded-lg pl-1 h-8 border-2" required>
+                                                        <option value="">---Selecione uma opção---</option>
+                                                    <% phone_types.forEach(type => { %>
+                                                        <option value="<%= type.id %>">
+                                                            <%= type.option %>
+                                                        </option>
+                                                    <% }); %>
+                                                </select>
+                                            </div>
+                                            <div class="w-full lg:inline-grid lg:grid-cols-4-6">
+                                                <div class="w-full mt-4 lg:px-1">
+                                                    <legend>DDD</legend>
+                                                    <input type="tel" name="employee_DDD" id="employee_DDD" class="w-full rounded-lg pl-1 h-8 border-2" minlength="2" maxlength="2" oninput="onlyNumbers(this)" required>
+                                                </div>
+                                                <div class="w-full mt-4">
+                                                    <legend>Número</legend>
+                                                    <input type="tel" name="employee_phone_number" id="employee_phone_number" class="w-full rounded-lg pl-1 h-8 border-2" minlength="8" maxlength="9" oninput="onlyNumbers(this)" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="block w-full px-4 mt-4">
+                                    <button type="button" id="DatasSubmit" class="mt-4 w-32 lg:mr-4 md:float-right bg-brown-100 rounded-lg p-2 font-medium text-gray-200 text-lg" onclick="SaveEmployee()">Enviar</button>
+                                    <button type="button" id="DatasCancel" onclick="disableEdition(this)" class="mt-4 w-32 lg:mr-4 md:float-right bg-brown-100 rounded-lg p-2 font-medium text-gray-200 text-lg">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>  
+    </body>
+    <script src="/JS/axios.min.js"></script>
+    <script src="/JS/SearchCEP.js"></script>
+    <script src="/JS/CloneFieldset.js"></script>
+    <script src="/JS/Adm.js"></script>
+    <script src="/JS/AdmAxiosFunctions.js"></script>
+</html>

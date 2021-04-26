@@ -1,8 +1,3 @@
-html{
-  height: 100vh;
-  width: 100vw;
-}
-
 .bg-brown-50 {
     --tw-bg-opacity: 1;
     background-color: rgba(216, 175, 134, var(--tw-bg-opacity));
@@ -120,6 +115,10 @@ html{
 .grid-cols-85-15{
   grid-template-columns: 85fr 15fr;
 }
+  
+.grid-cols-1-1-1{
+  grid-template-columns: 1fr 1fr 1fr;
+}
 
 @media (min-width: 1024px) {
 
@@ -189,6 +188,10 @@ html{
   
   .lg\:grid-cols-85-15{
     grid-template-columns: 85fr 15fr;
+  }
+  
+  .lg\:grid-cols-1-1-1{
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
 }
@@ -261,6 +264,10 @@ html{
   
   .md\:grid-cols-85-15{
     grid-template-columns: 85fr 15fr;
+  }
+  
+  .md\:grid-cols-1-1-1{
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
 }
